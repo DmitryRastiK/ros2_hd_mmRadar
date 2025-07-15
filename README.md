@@ -69,4 +69,6 @@ https://github.com/DmitryRastiK/my_robot_project
 
 4. Режим USRR
 
+![USRR](./images_and_videos/sim_USRR.mp4)
+
 <img src="./images_and_videos/sim_USRR.mp4" width="600" height="600"/>
