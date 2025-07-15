@@ -61,14 +61,9 @@ https://github.com/DmitryRastiK/my_robot_project
 
 Изменяя параметры радара (см. таблицу выше) были симулированы все 4 режима работы:
 
-1. Режим LRR
+1. Режим LRR (Large Range Radius)
+2. Режим MRR (Medium Range Radius)
+3. Режим SRR (Small Range Radius)
+4. Режим USRR (Ultra Small Range Radius)
 
-2. Режим MRR
-
-3. Режим SRR
-
-4. Режим USRR
-
-![USRR](./images_and_videos/sim_USRR.mp4)
-
-<img src="./images_and_videos/sim_USRR.mp4" width="600" height="600"/>
+![USRR](./images_and_videos/sim_USRR.png)
