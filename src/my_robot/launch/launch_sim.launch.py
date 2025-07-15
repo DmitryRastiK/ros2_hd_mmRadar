@@ -20,6 +20,19 @@ def generate_launch_description():
 
     package_name = "my_robot"  # <--- CHANGE ME
 
+    world_path = os.path.join(
+        get_package_share_directory(package_name),
+        "worlds",
+        "my_city.world",
+    )
+
+    # 2. Объявляем параметр запуска
+    declare_world_arg = DeclareLaunchArgument(
+        "world",
+        default_value=world_path,  # реальный путь к файлу
+        description="Path to Gazebo world file (.world format)",  # просто подсказка
+    )
+
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
@@ -44,6 +57,11 @@ def generate_launch_description():
                 )
             ]
         ),
+        launch_arguments={
+            "world": LaunchConfiguration("world"),
+            "verbose": "true",
+            "pause": "false",
+        }.items(),
     )
 
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
@@ -56,6 +74,7 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
+            declare_world_arg,  # Должен быть первым
             rsp,
             gazebo,
             spawn_entity,

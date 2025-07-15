@@ -85,8 +85,8 @@
                     <vertical>
                         <samples>6</samples>
                         <!-- Сектор обзора в вертикальной плоскости, гр	20 -->
-                        <min_angle>-0.1745</min_angle>
-                        <max_angle>0.1745</max_angle>
+                        <min_angle>0</min_angle>
+                        <max_angle>0.349</max_angle>
                     </vertical>
                 </scan>
                 <range>
