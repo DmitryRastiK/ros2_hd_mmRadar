@@ -1,0 +1,70 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found ament_lint_auto: 0.12.12 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dmitrytorov/radar/build/my_robot
+-- Install configuration: ""
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/launch
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/launch/launch_sim.launch.py
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/launch/rsp.launch.py
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/launch/launch_slam.launch.py
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/IMU.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/lidar.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/gazebo_control.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/robot_core.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/my_robot.urdf.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/3d_lidar.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/camera.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/depth_camera_2.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/radar.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/urdf/depth_camera.xacro
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/config
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/config/mapper_params_online_async.yaml
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/config/diff_drive_controllers.yaml
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/rviz
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/rviz/2_depth_cameras.rviz
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/rviz/rviz.rviz
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/rviz/slam.rviz
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes/depth_camera.STL
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes/robot_base_link.STL
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes/IMU.STL
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes/wheel.STL
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes/camera.STL
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes/lidar.STL
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/meshes/radar.STL
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/worlds
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/worlds/my_world.world
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/ament_index/resource_index/package_run_dependencies/my_robot
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/ament_index/resource_index/parent_prefix_path/my_robot
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/environment/ament_prefix_path.sh
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/environment/ament_prefix_path.dsv
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/environment/path.sh
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/environment/path.dsv
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/local_setup.bash
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/local_setup.sh
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/local_setup.zsh
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/local_setup.dsv
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/package.dsv
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/ament_index/resource_index/packages/my_robot
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/cmake/my_robotConfig.cmake
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/cmake/my_robotConfig-version.cmake
+-- Installing: /home/dmitrytorov/radar/install/my_robot/share/my_robot/package.xml

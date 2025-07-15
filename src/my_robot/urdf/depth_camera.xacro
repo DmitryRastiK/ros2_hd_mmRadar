@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <joint
+        name="depth_camera_joint"
+        type="fixed">
+        <origin
+            xyz="-0.160317723297044 -0.000221245477216206 0.160000000000002"
+            rpy="0 0 0" />
+        <parent
+            link="base_link" />
+        <child
+            link="depth_camera" />
+        <axis
+            xyz="0 0 0" />
+    </joint>
+
+    <link
+        name="depth_camera">
+        <inertial>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <mass
+                value="0" />
+            <inertia
+                ixx="0"
+                ixy="0"
+                ixz="0"
+                iyy="0"
+                iyz="0"
+                izz="0" />
+        </inertial>
+        <visual>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="file://$(find my_robot)/meshes/depth_camera.STL" />
+            </geometry>
+            <material
+                name="">
+                <color
+                    rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="file://$(find my_robot)/meshes/depth_camera.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="depth_camera_optical_joint" type="fixed">
+        <parent link="depth_camera" />
+        <child link="depth_camera_optical" />
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+    </joint>
+
+    <link name="depth_camera_optical"></link>
+
+    <gazebo reference="depth_camera">
+        <material>Gazebo/Black</material>
+
+        <sensor name="depth_camera" type="depth">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <format>B8G8R8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>8.0</far>
+                </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>depth_camera_optical</frame_name>
+                <min_depth>0.1</min_depth>
+                <max_depth>100.0</max_depth>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
+</robot>

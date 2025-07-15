@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- ==================== КАМЕРА 2 ==================== -->
+    <joint name="depth_camera_2_joint" type="fixed">
+        <origin xyz="0.1675 0.001898 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="depth_camera_2" />
+    </joint>
+
+    <link name="depth_camera_2">
+        <inertial>
+            <origin xyz="0.0031703 0.00029421 0.025157" rpy="0 0 0" />
+            <mass value="1.5023" />
+            <inertia
+                ixx="0.00057475" ixy="2.5949E-07" ixz="-9.5243E-06"
+                iyy="0.0011223" iyz="1.9381E-07" izz="0.0011136" />
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="file://$(find my_robot)/meshes/camera.STL" />
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file://$(find my_robot)/meshes/camera.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Промежуточный фрейм для позиционирования оптики -->
+    <link name="depth_camera_2_up" />
+
+    <joint name="depth_camera_2_up_joint" type="fixed">
+        <parent link="depth_camera_2" />
+        <child link="depth_camera_2_up" />
+        <origin xyz="0.03 0 0.025" rpy="0 0 0" />
+    </joint>
+
+    <!-- Оптический фрейм (Z вперёд, X вправо, Y вниз) -->
+    <link name="depth_camera_2_optical" />
+
+    <joint name="depth_camera_2_optical_joint" type="fixed">
+        <parent link="depth_camera_2_up" />
+        <child link="depth_camera_2_optical" />
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+    </joint>
+
+    <!-- Конфигурация Gazebo -->
+    <gazebo reference="depth_camera_2">
+        <material>Gazebo/Blue</material>
+        <sensor name="depth_camera_2_sensor" type="depth">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>8.0</far>
+                </clip>
+            </camera>
+            <plugin name="depth_camera_2_plugin" filename="libgazebo_ros_camera.so">
+                <frame_name>depth_camera_2_optical</frame_name>
+                <camera_name>depth_camera_2</camera_name>
+                <image_topic_name>image_raw</image_topic_name>
+                <depth_topic_name>depth/image_raw</depth_topic_name>
+                <point_cloud_topic_name>depth/points</point_cloud_topic_name>
+                <min_depth>0.1</min_depth>
+                <max_depth>100.0</max_depth>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

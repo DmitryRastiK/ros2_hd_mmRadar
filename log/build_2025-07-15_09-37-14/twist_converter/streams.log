@@ -1,0 +1,35 @@
+[1.067s] Invoking command in '/home/dmitrytorov/radar/src/twist_converter': PYTHONPATH=/home/dmitrytorov/radar/build/twist_converter/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/twist_converter build --build-base /home/dmitrytorov/radar/build/twist_converter/build install --record /home/dmitrytorov/radar/build/twist_converter/install.log --single-version-externally-managed install_data
+[1.225s] /home/dmitrytorov/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:270: UserWarning: Unknown distribution option: 'tests_require'
+[1.225s]   warnings.warn(msg)
+[1.346s] running egg_info
+[1.365s] creating ../../build/twist_converter/twist_converter.egg-info
+[1.366s] writing ../../build/twist_converter/twist_converter.egg-info/PKG-INFO
+[1.366s] writing dependency_links to ../../build/twist_converter/twist_converter.egg-info/dependency_links.txt
+[1.366s] writing entry points to ../../build/twist_converter/twist_converter.egg-info/entry_points.txt
+[1.366s] writing requirements to ../../build/twist_converter/twist_converter.egg-info/requires.txt
+[1.366s] writing top-level names to ../../build/twist_converter/twist_converter.egg-info/top_level.txt
+[1.366s] writing manifest file '../../build/twist_converter/twist_converter.egg-info/SOURCES.txt'
+[1.404s] reading manifest file '../../build/twist_converter/twist_converter.egg-info/SOURCES.txt'
+[1.405s] writing manifest file '../../build/twist_converter/twist_converter.egg-info/SOURCES.txt'
+[1.405s] running build
+[1.405s] running build_py
+[1.406s] creating /home/dmitrytorov/radar/build/twist_converter/build/lib/twist_converter
+[1.406s] copying twist_converter/twist_to_twist_stamped.py -> /home/dmitrytorov/radar/build/twist_converter/build/lib/twist_converter
+[1.406s] copying twist_converter/__init__.py -> /home/dmitrytorov/radar/build/twist_converter/build/lib/twist_converter
+[1.406s] running install
+[1.410s] running install_lib
+[1.430s] creating /home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages/twist_converter
+[1.430s] copying /home/dmitrytorov/radar/build/twist_converter/build/lib/twist_converter/twist_to_twist_stamped.py -> /home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages/twist_converter
+[1.431s] copying /home/dmitrytorov/radar/build/twist_converter/build/lib/twist_converter/__init__.py -> /home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages/twist_converter
+[1.431s] byte-compiling /home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages/twist_converter/twist_to_twist_stamped.py to twist_to_twist_stamped.cpython-310.pyc
+[1.431s] byte-compiling /home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages/twist_converter/__init__.py to __init__.cpython-310.pyc
+[1.431s] running install_data
+[1.432s] creating /home/dmitrytorov/radar/install/twist_converter/share/ament_index/resource_index/packages
+[1.432s] copying resource/twist_converter -> /home/dmitrytorov/radar/install/twist_converter/share/ament_index/resource_index/packages
+[1.432s] copying package.xml -> /home/dmitrytorov/radar/install/twist_converter/share/twist_converter
+[1.432s] running install_egg_info
+[1.453s] Copying ../../build/twist_converter/twist_converter.egg-info to /home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages/twist_converter-0.0.0-py3.10.egg-info
+[1.454s] running install_scripts
+[1.604s] Installing twist_to_twist_stamped script to /home/dmitrytorov/radar/install/twist_converter/lib/twist_converter
+[1.604s] writing list of installed files to '/home/dmitrytorov/radar/build/twist_converter/install.log'
+[1.644s] Invoked command in '/home/dmitrytorov/radar/src/twist_converter' returned '0': PYTHONPATH=/home/dmitrytorov/radar/build/twist_converter/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dmitrytorov/radar/install/twist_converter/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/twist_converter build --build-base /home/dmitrytorov/radar/build/twist_converter/build install --record /home/dmitrytorov/radar/build/twist_converter/install.log --single-version-externally-managed install_data

@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link
+        name="lidar">
+        <inertial>
+            <origin
+                xyz="0.007076 -1.7934E-13 0.023577"
+                rpy="0 0 0" />
+            <mass
+                value="3.3842" />
+            <inertia
+                ixx="0.0027252"
+                ixy="1.074E-16"
+                ixz="-0.00027355"
+                iyy="0.0038278"
+                iyz="-5.503E-16"
+                izz="0.0051245" />
+        </inertial>
+        <visual>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="file://$(find my_robot)/meshes/lidar.STL" />
+            </geometry>
+            <material
+                name="">
+                <color
+                    rgba="1 0 0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="file://$(find my_robot)/meshes/lidar.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <gazebo reference="lidar">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <joint
+        name="lidar_joint"
+        type="fixed">
+        <origin
+            xyz="0.077518 0.0041021 0.06"
+            rpy="0 0 0" />
+        <parent
+            link="base_link" />
+        <child
+            link="lidar" />
+        <axis
+            xyz="0 0 0" />
+    </joint>
+
+    <!-- Новый промежуточный link -->
+    <link name="lidar_mount" />
+
+    <!-- Новый joint, поднимающий сам лидар -->
+    <joint name="lidar_offset_joint" type="fixed">
+        <origin xyz="0 0 0.04" rpy="0 0 0" />  <!-- Подъем -->
+        <parent link="lidar" />
+        <child link="lidar_mount" />  <!-- Оригинальный лидар -->
+    </joint>
+
+    <gazebo reference="lidar_mount">
+        <sensor name="lidar" type="ray">
+            <pose> 0 0 0.025 0 0 0 </pose>
+            <visualize>false</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <min_angle>-3.14</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.1</min>
+                    <max>20</max>
+                </range>
+            </ray>
+            <plugin name="lidar_controller" filename="libgazebo_ros_ray_sensor.so">
+                <ros>
+                    <argument>~/out:=scan</argument>
+                </ros>
+                <output_type>sensor_msgs/LaserScan</output_type>
+                <frame_name>lidar_mount</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>
