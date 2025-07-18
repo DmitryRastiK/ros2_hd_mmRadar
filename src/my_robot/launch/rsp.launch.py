@@ -15,7 +15,7 @@ def generate_launch_description():
     # Пути к файлам
     pkg_path = os.path.join(get_package_share_directory("my_robot"))
     xacro_file = os.path.join(pkg_path, "urdf", "my_robot.urdf.xacro")
-    rviz_config_file = os.path.join(pkg_path, "rviz", "radar.rviz")
+    rviz_config_file = os.path.join(pkg_path, "rviz", "points_to_scan_slam.rviz")
     controller_params_file = os.path.join(
         pkg_path, "config", "diff_drive_controllers.yaml"
     )

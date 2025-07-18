@@ -67,3 +67,13 @@ https://github.com/DmitryRastiK/my_robot_project
 4. Режим USRR (Ultra Small Range Radius)
 
 ![USRR](./images_and_videos/sim_USRR.png)
+
+## ЧАСТЬ 3. SLAM
+
+Поскольку `SLAM_toolbox` работает только с 2D лидарными сканами, а радар и 3D лидар публикуют облака точек PointCloud2, то можно использовать конвертер из облаков точек в 2D LaserScan: https://github.com/ros-perception/pointcloud_to_laserscan
+
+Он подписывается на топик с облаками точек и публикует сообщения в топик /scan (название можно задать свое). Обязательным условием, чтобы нода `pointcloud_to_laserscan` подписалась на топик является наличие подписчика у топика /scan (это сделано, чтобы конвертер не работал "в холостую"). Но при попытке подписаться на /scan нодой rviz2 возникнет конфлик QoS (Quality of Service). QoS-профиль /scan `reliability: BEST_EFFORT`, а rviz2 ожидает `reliability: RELIABLE`. Чтобы решить эту проблему был создана qos_bridge_node, которая подписывается на /scan и публикует сообщения в топик `/scan_reliable`, на который уже подписывается rviz2.
+
+Так же может возникнуть проблема с неправильным отображением точек в rviz2. Она решается подборкой параметров запуска `pointcloud_to_laserscan`. 
+
+![2D SLAM](./images_and_videos/2D_slam.png)
