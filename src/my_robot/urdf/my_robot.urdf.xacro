@@ -6,7 +6,7 @@
     <xacro:include filename="gazebo_control.xacro" />
     <!-- <xacro:include filename="ros2_control.xacro" /> -->
 
-    <xacro:include filename="3d_lidar.xacro" />
+    <!-- <xacro:include filename="3d_lidar.xacro" /> --> <!-- Используется в проектк с радаром -->
     <!-- <xacro:include filename="lidar.xacro" /> -->
 
     <!-- <xacro:include filename="camera.xacro" /> -->
@@ -14,11 +14,11 @@
     <!-- <xacro:include filename="depth_camera.xacro" /> -->
 
     <!-- Камера глубины из обычной камеры -->
-    <xacro:include filename="depth_camera_2.xacro" />
+    <!-- <xacro:include filename="depth_camera_2.xacro" /> --> <!-- Используется в проектк с радаром -->
 
     <xacro:include filename="IMU.xacro" />
 
     <!-- Радар вместо depth_camera -->
-    <xacro:include filename="radar.xacro" />
+    <xacro:include filename="radar.xacro" /> <!-- Используется в проектк с радаром -->
 
 </robot>
