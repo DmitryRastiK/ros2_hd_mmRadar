@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_robot">
 
+    <xacro:arg name="enable_radar" default="true" /> <!-- Параметр для включения/выключения радара -->
+    <xacro:arg name="radar_mode" default="USRR" />   <!-- Режим: USRR, SRR, MRR, LRR -->
+
     <xacro:include filename="robot_core.xacro" />
 
     <xacro:include filename="gazebo_control.xacro" />
@@ -19,6 +22,11 @@
     <xacro:include filename="IMU.xacro" />
 
     <!-- Радар вместо depth_camera -->
-    <xacro:include filename="radar.xacro" /> <!-- Используется в проектк с радаром -->
+    <!-- Радар включается только если enable_radar=true -->
+    <xacro:if value="$(arg enable_radar)">
+        <xacro:include filename="radar.xacro" />
+        <!-- Передаем режим в radar.xacro -->
+        <xacro:radar_sensor mode="$(arg radar_mode)" />
+    </xacro:if>
 
 </robot>

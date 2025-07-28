@@ -1,43 +1,120 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="radar">
 
-    <link
-        name="radar">
+    <!-- Получаем параметр radar_mode из включающего файла -->
+    <xacro:arg name="radar_mode" default="USRR" />
+    <xacro:property name="mode" value="$(arg radar_mode)" />
+
+    <!-- Локальные константы для преобразования углов -->
+    <xacro:property name="radar_pi" value="3.141592653589793" />
+    <xacro:property name="radar_deg_to_rad" value="${radar_pi / 180}" />
+
+    <!-- Общие параметры радара -->
+    <xacro:property name="radar_resolution_azimuth" value="2" />
+    <xacro:property name="radar_resolution_elevation" value="2" />
+    <xacro:property name="radar_noise_type" value="gaussian" />
+    <xacro:property name="radar_noise_mean" value="0.0" />
+    <xacro:property name="radar_noise_stddev" value="0.15" />
+    <xacro:property name="radar_min_range" value="0.2" />
+
+    <!-- Макрос радара -->
+    <xacro:macro name="radar_sensor" params="mode:=USRR">
+        <!-- Параметры режимов (используем уникальные имена) -->
+        <xacro:property name="radar_max_range"
+            value="${150.0 if mode == 'LRR' else 
+                          100.0 if mode == 'MRR' else 
+                          50.0 if mode == 'SRR' else 
+                          25.0}" />
+
+        <xacro:property name="radar_range_resolution"
+            value="${0.6 if mode == 'LRR' else 
+                          0.4 if mode == 'MRR' else 
+                          0.2 if mode == 'SRR' else 
+                          0.1}" />
+
+        <xacro:property name="radar_azimuth_fov_deg"
+            value="${10 if mode == 'LRR' else 
+                          20 if mode == 'MRR' else 
+                          90 if mode == 'SRR' else 
+                          120}" />
+
+        <xacro:property name="radar_elevation_fov_deg" value="20" />
+
+        <!-- Конвертация в радианы -->
+        <xacro:property name="radar_azimuth_fov_rad"
+            value="${radar_azimuth_fov_deg * radar_deg_to_rad}" />
+        <xacro:property name="radar_elevation_fov_rad"
+            value="${radar_elevation_fov_deg * radar_deg_to_rad}" />
+
+        <!-- Расчет количества сэмплов -->
+        <xacro:property name="radar_samples_azimuth"
+            value="${int(radar_azimuth_fov_deg / radar_resolution_azimuth)}" />
+        <xacro:property name="radar_samples_elevation"
+            value="${int(radar_elevation_fov_deg / radar_resolution_elevation)}" />
+
+        <!-- Сенсор радара -->
+        <sensor name="radar_sensor" type="ray">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>20</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>${radar_samples_azimuth}</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-${radar_azimuth_fov_rad/2}</min_angle>
+                        <max_angle>${radar_azimuth_fov_rad/2}</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>${radar_samples_elevation}</samples>
+                        <min_angle>0</min_angle>
+                        <max_angle>${radar_elevation_fov_rad}</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>${radar_min_range}</min>
+                    <max>${radar_max_range}</max>
+                    <resolution>${radar_range_resolution}</resolution>
+                </range>
+                <noise>
+                    <type>${radar_noise_type}</type>
+                    <mean>${radar_noise_mean}</mean>
+                    <stddev>${radar_noise_stddev}</stddev>
+                </noise>
+            </ray>
+            <plugin name="radar_controller" filename="libgazebo_ros_ray_sensor.so">
+                <ros>
+                    <namespace>/hd_radar_0</namespace>
+                    <remapping>~/out:=points/dynamic</remapping>
+                </ros>
+                <output_type>sensor_msgs/PointCloud2</output_type>
+                <frame_name>radar_mount</frame_name>
+            </plugin>
+        </sensor>
+    </xacro:macro>
+
+    <!-- Физическая модель радара -->
+    <link name="radar">
         <inertial>
-            <origin
-                xyz="0.007076 -1.7934E-13 0.023577"
-                rpy="0 0 0" />
-            <mass
-                value="3.3842" />
+            <origin xyz="0.007076 -1.7934E-13 0.023577" rpy="0 0 0" />
+            <mass value="3.3842" />
             <inertia
-                ixx="0.0027252"
-                ixy="1.074E-16"
-                ixz="-0.00027355"
-                iyy="0.0038278"
-                iyz="-5.503E-16"
-                izz="0.0051245" />
+                ixx="0.0027252" ixy="1.074E-16" ixz="-0.00027355"
+                iyy="0.0038278" iyz="-5.503E-16" izz="0.0051245" />
         </inertial>
         <visual>
-            <origin
-                xyz="0 0 0"
-                rpy="1.5708 0 0" />
+            <origin xyz="0 0 0" rpy="1.5708 0 0" />
             <geometry>
-                <mesh
-                    filename="file://$(find my_robot)/meshes/radar.STL" />
+                <mesh filename="file://$(find my_robot)/meshes/radar.STL" />
             </geometry>
-            <material
-                name="">
-                <color
-                    rgba="1 0.6 0 1" />
+            <material name="">
+                <color rgba="1 0.6 0 1" />
             </material>
         </visual>
         <collision>
-            <origin
-                xyz="0 0 0"
-                rpy="1.5708 0 0" />
+            <origin xyz="0 0 0" rpy="1.5708 0 0" />
             <geometry>
-                <mesh
-                    filename="file://$(find my_robot)/meshes/radar.STL" />
+                <mesh filename="file://$(find my_robot)/meshes/radar.STL" />
             </geometry>
         </collision>
     </link>
@@ -46,17 +123,11 @@
         <material>Gazebo/Orange</material>
     </gazebo>
 
-    <joint
-        name="radar_joint" type="fixed">
-        <origin
-            xyz="-0.120317723297044 -0.000221245477216206 0.20000000000002"
-            rpy="0 0 0" />
-        <parent
-            link="base_link" />
-        <child
-            link="radar" />
-        <axis
-            xyz="0 0 0" />
+    <joint name="radar_joint" type="fixed">
+        <origin xyz="-0.120317723297044 -0.000221245477216206 0.20000000000002" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="radar" />
+        <axis xyz="0 0 0" />
     </joint>
 
     <link name="radar_mount" />
@@ -67,50 +138,9 @@
         <child link="radar_mount" />
     </joint>
 
-    <!-- Режим USRR -->
+    <!-- Установка режима работы радара (по умолчанию USRR) -->
     <gazebo reference="radar_mount">
-        <sensor name="radar_sensor" type="ray">
-            <pose>0 0 0 0 0 0</pose>
-            <visualize>false</visualize>
-            <update_rate>20</update_rate>
-            <ray>
-                <scan>
-                    <horizontal>
-                        <!-- Сектор обзора по азимуту, гр -->
-                        <samples>120</samples>
-                        <resolution>2</resolution>
-                        <min_angle>-1.05</min_angle>
-                        <max_angle>1.05</max_angle>
-                    </horizontal>
-                    <vertical>
-                        <samples>6</samples>
-                        <!-- Сектор обзора в вертикальной плоскости, гр	20 -->
-                        <min_angle>0</min_angle>
-                        <max_angle>0.349</max_angle>
-                    </vertical>
-                </scan>
-                <range>
-                    <!-- Разрешение по дальности, м -->
-                    <min>0.2</min>
-                    <max>25.0</max>
-                    <resolution>0.1</resolution>
-                </range>
-                <noise>
-                    <type>gaussian</type>   <!-- Тип шума (гауссовский/нормальный) -->
-                    <mean>0.0</mean>        <!-- Среднее значение шума (смещение) -->
-                    <stddev>0.15</stddev>   <!-- Стандартное отклонение (разброс) -->
-                </noise>
-            </ray>
-            <plugin name="radar_controller" filename="libgazebo_ros_ray_sensor.so">
-                <ros>
-                    <!-- Изменил namespace и remapping чтобы публиковать в нужный топик -->
-                    <namespace>/hd_radar_0</namespace>
-                    <remapping>~/out:=points/dynamic</remapping>
-                </ros>
-                <output_type>sensor_msgs/PointCloud2</output_type>
-                <frame_name>radar_mount</frame_name>
-            </plugin>
-        </sensor>
+        <xacro:radar_sensor mode="${mode}" />  <!-- Режим берется из переданного параметра -->
     </gazebo>
 
 </robot>

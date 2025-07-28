@@ -66,6 +66,9 @@ https://github.com/DmitryRastiK/my_robot_project
 3. Режим SRR (Small Range Radius)
 4. Режим USRR (Ultra Small Range Radius)
 
+Отдельным "режимом" можно считать выключение радара через параметр `enable_radar`. 
+Параметры радара описаны в `my_robot.urdf.xacro` файле. Поскольку xacro обрабатывается только при запуске, то динамически изменять режимы работы радара в Gazebo не получится. 
+
 ![USRR](./images_and_videos/sim_USRR.png)
 
 ## ЧАСТЬ 3. SLAM
