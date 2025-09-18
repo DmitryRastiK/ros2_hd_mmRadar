@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="radar">
+
+    <!-- Физическая модель радара -->
+    <link name="radar">
+        <inertial>
+            <origin xyz="0.007076 -1.7934E-13 0.023577" rpy="0 0 0" />
+            <mass value="3.3842" />
+            <inertia
+                ixx="0.0027252" ixy="1.074E-16" ixz="-0.00027355"
+                iyy="0.0038278" iyz="-5.503E-16" izz="0.0051245" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5708 0 0" />
+            <geometry>
+                <mesh filename="file://$(find hd_radar_description)/meshes/radar.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 0.6 0 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5708 0 0" />
+            <geometry>
+                <mesh filename="file://$(find hd_radar_description)/meshes/radar.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="radar_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="radar" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+</robot>

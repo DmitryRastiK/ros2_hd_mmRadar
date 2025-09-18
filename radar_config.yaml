@@ -1,0 +1,22 @@
+device_settings:
+  preset: srr # usrr. srr, mrr, lrr or custom
+  mode: 1
+  ip_addr: 192.168.1.50
+  mask: 255.255.255.0
+  gateway: 192.268.1.1
+  host_name: tisoc
+  domain: demo.net
+  mac: f1-12-01-45-74
+  ip_addr_send: 192.168.1.100
+  ip_addr_receive: 192.168.1.100
+  ip_addr_ntp_server: 192.168.1.100
+  port_send: 25200
+  port_receive: 35200
+
+  sta_threshold: 13
+  sta_filt_azm: 16
+  sta_filt_rcs: -48
+
+  dyn_threshold: 13
+  dyn_filt_azm: 16
+  dyn_filt_rcs: -48
