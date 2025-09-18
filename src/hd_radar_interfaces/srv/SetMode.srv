@@ -1,4 +1,0 @@
-uint8 mode 1
-uint8 test_source 0
----
-bool success
