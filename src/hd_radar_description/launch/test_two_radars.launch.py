@@ -35,7 +35,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(driver_launch),
         launch_arguments={
             "rviz": "True",
-            "rqt": "False",
+            "rqt": "True",
         }.items(),
     )
 
