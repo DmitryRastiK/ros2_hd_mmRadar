@@ -1,0 +1,52 @@
+/**:
+  ros__parameters:
+    # Topics configuration
+    input_topic: "/hd_radar_0/points/dynamic"
+    output_topic: "/radar_dynamic_markers"
+    
+    # Marker lifetime (seconds)
+    # How long the marker stays visible in RViz before disappearing
+    marker_lifetime: 1.0
+    
+    # Object Classes by RCS
+    # Each class defines RCS range and marker dimensions
+    
+    # Number of object classes
+    num_classes: 1
+    
+    # Class 0: Человек (Person)
+    class_0:
+      name: "person"
+      rcs_min: -1.0             # Minimum RCS for this class (dBsm)
+      rcs_max: 0.5              # Maximum RCS for this class (dBsm)
+      marker_type: "cube"       # cube = rectangular box
+      size_x: 0.6               # Width (meters)
+      size_y: 0.6               # Depth (meters)
+      size_z: 1.75              # Height (meters)
+      color_r: 0.0              # Blue color for person
+      color_g: 0.5
+      color_b: 1.0
+      color_a: 0.7
+    
+    # Class 1: Машина (Car)
+    class_1:
+      name: "car"
+      rcs_min: 3.0              # Minimum RCS for this class (dBsm)
+      rcs_max: 10.0              # Maximum RCS for this class (dBsm)
+      marker_type: "cube"       # cube = rectangular box
+      size_x: 5.0               # Length (meters)
+      size_y: 3.0               # Width (meters)
+      size_z: 2.5               # Height (meters)
+      color_r: 1.0              # Red color for car
+      color_g: 0.0
+      color_b: 0.0
+      color_a: 0.7
+    
+    # Default marker for points that don't match any class
+    default_marker:
+      marker_type: "sphere"
+      size: 0.1
+      color_r: 0.5
+      color_g: 0.5
+      color_b: 0.5
+      color_a: 0.5
