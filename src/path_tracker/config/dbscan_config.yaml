@@ -1,0 +1,28 @@
+/**:
+  ros__parameters:
+    # Topics configuration
+    input_topic: "/radar_dynamic_markers"
+    clusters_num_topic: "/clusters_num"
+    clusters_centers_topic: "/clusters_centers"
+    clusters_markers_topic: "/clusters_markers"
+    
+    # DBSCAN algorithm parameters
+    # eps: Maximum distance between two samples for one to be considered
+    #      as in the neighborhood of the other (meters)
+    eps: 3.0
+    
+    # min_samples: Minimum number of samples in a neighborhood
+    #              for a point to be considered as a core point
+    min_samples: 2
+    
+    # Frame configuration
+    # Reference frame for the output
+    frame_id: "base_link"
+    
+    # Visualization parameters
+    # Whether to publish visualization markers for clusters
+    publish_markers: true
+    
+    # Marker lifetime in seconds
+    marker_lifetime: 1.0
+

@@ -1,0 +1,32 @@
+/**:
+  ros__parameters:
+    # Topics configuration
+    input_topic: "/clusters_centers"
+    output_topic: "/Kalman_predict"
+    
+    # Kalman Filter parameters
+    # Time step between measurements (seconds)
+    dt: 0.1
+    
+    # Process noise covariance
+    # Higher values mean more trust in predictions, lower trust in model
+    process_noise: 1.0
+    
+    # Measurement noise covariance
+    # Higher values mean less trust in measurements
+    measurement_noise: 0.5
+    
+    # Data association parameters
+    # Maximum distance (meters) for associating measurement to tracked object
+    association_threshold: 2.0
+    
+    # Maximum number of missed updates before removing a tracked object
+    max_missed_updates: 5
+    
+    # Visualization parameters
+    # Marker lifetime in seconds
+    marker_lifetime: 1.0
+    
+    # Number of future prediction steps to visualize
+    prediction_steps: 5
+

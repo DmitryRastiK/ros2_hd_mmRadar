@@ -1,0 +1,15 @@
+/**:
+  ros__parameters:
+    # Topics configuration
+    input_topic: "/Kalman_predict"
+    output_topic: "/tracker_path"
+    
+    # Path settings
+    # Maximum number of poses to keep in the path
+    # Older poses will be removed when this limit is reached
+    max_path_length: 1000
+    
+    # Target frame for the path
+    # Should match the frame of input markers
+    target_frame: "base_link"
+

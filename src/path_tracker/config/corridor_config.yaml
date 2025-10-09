@@ -1,0 +1,39 @@
+/**:
+  ros__parameters:
+    # Topic configuration
+    output_topic: "/corridor_marker"
+    
+    # Corridor dimensions (meters)
+    # Length along x-axis
+    length_x: 50.0
+    
+    # Width along y-axis
+    width_y: 3.0
+    
+    # Height along z-axis
+    height_z: 3.0
+    
+    # Corridor start position (meters)
+    # Start point coordinates
+    start_x: 0.0
+    start_y: 0.0
+    start_z: 0.0
+    
+    # Frame configuration
+    # Reference frame for the corridor
+    frame_id: "base_link"
+    
+    # Marker appearance
+    # Color in RGBA format (0.0 to 1.0)
+    color_r: 0.0
+    color_g: 0.0
+    color_b: 1.0
+    color_a: 0.3  # Semi-transparent blue
+    
+    # Publishing rate (Hz)
+    publish_rate: 1.0
+    
+    # Marker type
+    # Options: 'cube' (solid box) or 'line_strip' (wireframe)
+    marker_type: "cube"
+

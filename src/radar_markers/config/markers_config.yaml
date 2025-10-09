@@ -17,8 +17,8 @@
     # Class 0: Человек (Person)
     class_0:
       name: "person"
-      rcs_min: -1.0             # Minimum RCS for this class (dBsm)
-      rcs_max: 0.5              # Maximum RCS for this class (dBsm)
+      rcs_min: -10.0             # Minimum RCS for this class (dBsm)
+      rcs_max: 1.0              # Maximum RCS for this class (dBsm)
       marker_type: "cube"       # cube = rectangular box
       size_x: 0.6               # Width (meters)
       size_y: 0.6               # Depth (meters)
