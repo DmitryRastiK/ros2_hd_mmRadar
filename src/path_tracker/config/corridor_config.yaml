@@ -17,7 +17,7 @@
     # Start point coordinates
     start_x: 0.0
     start_y: 0.0
-    start_z: 0.0
+    start_z: -1.0
     
     # Frame configuration
     # Reference frame for the corridor

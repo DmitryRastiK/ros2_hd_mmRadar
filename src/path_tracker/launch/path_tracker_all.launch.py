@@ -22,6 +22,7 @@ def generate_launch_description():
     tracker_config = os.path.join(package_share, 'config', 'tracker_path_config.yaml')
     corridor_config = os.path.join(package_share, 'config', 'corridor_config.yaml')
     dbscan_config = os.path.join(package_share, 'config', 'dbscan_config.yaml')
+    rviz_config = os.path.join(package_share, 'rviz', 'corridor_walking_bag.rviz')
     
     # Declare launch arguments for enabling/disabling nodes
     launch_kalman_arg = DeclareLaunchArgument(
@@ -48,6 +49,12 @@ def generate_launch_description():
         description='Launch DBSCAN clustering node'
     )
     
+    launch_rviz_arg = DeclareLaunchArgument(
+        'launch_rviz',
+        default_value='true',
+        description='Launch RViz2 visualization'
+    )
+    
     # Declare arguments for config file overrides
     kalman_config_arg = DeclareLaunchArgument(
         'kalman_config',
@@ -71,6 +78,12 @@ def generate_launch_description():
         'dbscan_config',
         default_value=dbscan_config,
         description='Path to DBSCAN config file'
+    )
+    
+    rviz_config_arg = DeclareLaunchArgument(
+        'rviz_config',
+        default_value=rviz_config,
+        description='Path to RViz config file'
     )
     
     # Create nodes
@@ -110,23 +123,45 @@ def generate_launch_description():
         condition=IfCondition(LaunchConfiguration('launch_dbscan'))
     )
     
+    # Static transform publisher for base_link frame
+    # This publishes a static transform from map to base_link
+    static_tf_node = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_tf_publisher_base_link',
+        arguments=['0', '0', '0', '0', '0', '0', 'map', 'base_link']
+    )
+    
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', LaunchConfiguration('rviz_config')],
+        condition=IfCondition(LaunchConfiguration('launch_rviz'))
+    )
+    
     return LaunchDescription([
         # Launch arguments for enabling/disabling nodes
         launch_kalman_arg,
         launch_tracker_arg,
         launch_corridor_arg,
         launch_dbscan_arg,
+        launch_rviz_arg,
         
         # Config file arguments
         kalman_config_arg,
         tracker_config_arg,
         corridor_config_arg,
         dbscan_config_arg,
+        rviz_config_arg,
         
         # Nodes
+        static_tf_node,
         kalman_filter_node,
         tracker_path_node,
         corridor_node,
         dbscan_node,
+        rviz_node,
     ])
 

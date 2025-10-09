@@ -1,0 +1,82 @@
+/**:
+  ros__parameters:
+    # Topics configuration
+    input_topic: "/hd_radar_0/points/dynamic"
+    output_topic: "/hd_radar_0/points/dynamic_filtered"
+    
+    # Statistics reporting
+    # Report cumulative statistics every N messages
+    stats_report_interval: 100
+    
+    # Range filter (meters)
+    # Filters points based on distance from sensor
+    enable_range_filter: true
+    range_min: 0.0
+    range_max: 100.0
+    
+    # RCS filter (dBsm - decibel square meters)
+    # Radar Cross Section - measure of how detectable an object is by radar
+    enable_rcs_filter: true
+    rcs_min: -10.0
+    rcs_max: 1.0
+    
+    # Velocity filter (m/s)
+    # Filters by absolute velocity value (magnitude)
+    enable_velocity_filter: true
+    
+    # Threshold for absolute velocity |v|
+    velocity_abs_threshold: 0.2
+    
+    # Filter mode:
+    #   true:  keep points with |v| > threshold (filter out slow/static objects)
+    #   false: keep points with |v| < threshold (filter out fast objects)
+    velocity_filter_more: true
+    
+    # Azimuth filter (degrees)
+    # Horizontal angle from sensor
+    enable_azimuth_filter: false
+    azimuth_min: -180.0
+    azimuth_max: 180.0
+    
+    # Elevation filter (degrees)
+    # Vertical angle from sensor
+    enable_elevation_filter: false
+    elevation_min: -90.0
+    elevation_max: 90.0
+    
+    # Height filter (z coordinate in meters)
+    # Filters points based on their vertical position
+    enable_height_filter: true
+    height_min: -1.0
+    height_max: 2.0
+    
+    # X coordinate filter (meters)
+    # Filters points based on X position (forward/backward)
+    enable_x_filter: true
+    x_min: 0.0
+    x_max: 50.0
+    
+    # Y coordinate filter (meters)
+    # Filters points based on Y position (left/right)
+    enable_y_filter: true
+    y_min: -1.5
+    y_max: 1.5
+    
+    # SNR filter (signal-to-noise ratio in dB)
+    # Signal quality indicator
+    enable_snr_filter: true
+    snr_min: 30.0
+    snr_max: 1000.0
+    
+    # Power filter (dB)
+    # Received signal power
+    enable_power_filter: false
+    power_min: -100.0
+    power_max: 100.0
+    
+    # Noise filter (dB)
+    # Noise level
+    enable_noise_filter: false
+    noise_min: -100.0
+    noise_max: 100.0
+

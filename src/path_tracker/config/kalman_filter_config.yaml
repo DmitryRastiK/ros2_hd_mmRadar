@@ -1,7 +1,7 @@
 /**:
   ros__parameters:
     # Topics configuration
-    input_topic: "/clusters_centers"
+    input_topic: "/hd_radar_0/points/dynamic_filtered"
     output_topic: "/Kalman_predict"
     
     # Kalman Filter parameters

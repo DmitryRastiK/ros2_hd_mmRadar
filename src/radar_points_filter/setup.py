@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'path_tracker'
+package_name = 'radar_points_filter'
 
 setup(
     name=package_name,
@@ -14,22 +14,17 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
         (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
-        (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='dmitrytorov',
     maintainer_email='torovdmitrii@gmail.com',
-    description='TODO: Package description',
+    description='Radar point cloud filtering node',
     license='TODO: License declaration',
-    tests_require=['pytest'],
+    # tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'tracker_path_node = path_tracker.tracker_path_node:main',
-            'kalman_filter_node = path_tracker.kalman_filter_node:main',
-            'corridor_node = path_tracker.corridor_node:main',
-            'DBSCAN_node = path_tracker.DBSCAN_node:main',
-            'data_logger_node = path_tracker.data_logger_node:main',
+            'filter_node = radar_points_filter.filter_node:main',
         ],
     },
 )

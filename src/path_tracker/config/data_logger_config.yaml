@@ -1,0 +1,13 @@
+/**:
+  ros__parameters:
+    # Input topic configuration
+    input_topic: "/hd_radar_0/points/dynamic_filtered"
+    
+    # Output directory for CSV files
+    # Can be absolute path or relative to package directory
+    output_dir: "analys"
+    
+    # Prefix for CSV filenames
+    # Files will be named: {prefix}_{parameter}_{timestamp}.csv
+    file_prefix: "radar_data"
+

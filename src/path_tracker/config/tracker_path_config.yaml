@@ -1,7 +1,7 @@
 /**:
   ros__parameters:
     # Topics configuration
-    input_topic: "/Kalman_predict"
+    input_topic: "/hd_radar_0/points/dynamic"
     output_topic: "/tracker_path"
     
     # Path settings
